@@ -13,7 +13,6 @@
                 @for($i = 0; $i < $count; $i++)
                     <p>{{ $product->props['name'][$i] }}: {{ $product->props['value'][$i] }}</p>
                 @endfor
-                <p class="p--accent">Образец БЕСПЛАТНО!</p>
             </div>
             @endif
             <p class="card__price">от {{ $product->amount }} ₽</p>
