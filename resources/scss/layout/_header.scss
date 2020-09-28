@@ -1,0 +1,54 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the header of the site/application.
+// -----------------------------------------------------------------------------
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  z-index: 20;
+  background-color: #fff;
+
+  @media (min-width: 1024px) {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+}
+
+.header__inner {
+  display: flex;
+  padding: 0 40px;
+
+  @media (min-width: 1024px) {
+    padding: 0 15px;
+  }
+}
+
+.header__nav,
+.header__socials {
+  flex: 1 1 auto;
+}
+
+.header__socials {
+  display: flex;
+  align-items: center;
+
+  @media (min-width: 1200px) {
+    align-items: flex-start;
+  }
+}
+
+.header__nav {
+  display: none;
+
+  @media (min-width: 1200px) {
+    display: block;
+    margin-left: -20px;
+  }
+}
+
+.header__nav-toggler {
+  margin-right: -10px;
+}

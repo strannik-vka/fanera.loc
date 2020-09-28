@@ -1,0 +1,148 @@
+.section {
+  margin-bottom: 80px;
+}
+
+.section__title {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+  margin-top: 36px;
+  margin-bottom: 36px;
+  text-align: center;
+
+  @media (min-width: 1024px) {
+    font-size: 30px;
+    line-height: 37px;
+  }
+}
+
+.section__subtitle {
+  text-align: center;
+  margin-bottom: 30px;
+
+  @media (min-width: 1024px) {
+    margin-bottom: 60px;
+  }
+}
+
+.section__title,
+.site-title {
+  text-transform: uppercase;
+  color: var(--c-primary);
+}
+
+/*SECTIONS*/
+.section--main .form__wrapper {
+  margin-bottom: 60px;
+
+  @media (min-width: 1200px) {
+    position: absolute;
+    right: 15px;
+    top: 0;
+    z-index: 1;
+  }
+}
+
+
+.section--main .section__inner {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  padding-top: 30px;
+
+  @media (min-width: 1200px) {
+    padding-top: 60px;
+  }
+}
+
+.section--main img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (min-width: 1200px) {
+    margin-left: 15%;
+    order: 1;
+  }
+}
+
+
+.site-title {
+  margin-bottom: 20px;
+  font-size: 20px;
+  line-height: 24px;
+
+  @media (min-width: 1024px) {
+    margin-bottom: 35px;
+    font-size: 40px;
+    line-height: 49px;
+  }
+}
+
+.site-title + p {
+  font-size: 16px;
+  line-height: 20px;
+
+  @media (min-width: 1024px) {
+    font-size: 24px;
+    line-height: 29px;
+    text-align: left;
+  }
+}
+
+.site-title,
+.site-title + p {
+  text-align: center;
+  align-self: center;
+
+  @media (min-width: 1200px) {
+    text-align: left;
+    align-self: flex-start;
+    max-width: 600px;
+  }
+}
+
+.section--callback {
+  .section__inner {
+    display: flex;
+    flex-wrap: wrap;
+    
+    @media (min-width: 1200px) {
+      background-image: url(../img/callback-section.png);
+      background-repeat: no-repeat;
+      background-position: 280px bottom;
+      background-size: 450px;
+    }
+  }
+
+  .caption {
+    flex: 1 1 auto;
+
+    @media (min-width: 1024px) {
+      max-width: 450px;
+      flex-basis: 450px;
+      margin-left: auto;
+      order: 1;
+
+      * {
+        text-align: right;
+      }
+
+      .section__title {
+        margin-top: 85px;
+      }
+    }
+  }
+
+  .form__wrapper {
+    flex: 1 1 auto;
+
+    @media (min-width: 1024px) {
+      margin-left: 0;
+    }
+  }
+}
+
+
+

@@ -1,0 +1,62 @@
+@charset 'UTF-8';
+
+/**
+* 1. Configuration and helpers
+ */
+/**
+* 2. Vendors
+*/
+@import 'vendor/normalize';
+@import 'vendor/bootstrap-grid';
+/**
+* 3. Base stuff
+*/
+@import 'base/variables';
+@import 'base/base';
+@import 'base/fonts';
+@import 'base/helpers';
+/**
+* 4. Layout-related sections
+ */
+@import 'layout/header';
+@import 'layout/footer';
+@import 'layout/section';
+@import 'layout/theme_panel';
+/**
+* 5. Components
+ */
+@import 'components/button';
+@import 'components/card';
+@import 'components/form';
+@import 'components/nav';
+
+/**
+* 6. Page-specific styles
+ */
+//@import 'pages/home';
+/**
+* 7. Themes
+ */
+@import 'themes/default';
+
+.features {
+  background: #FFFFFF;
+  box-shadow: 0px 10px 50px var(--c-primary-shadow);
+  border-radius: 10px;
+  width: 100%;
+  max-width: 900px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: 0 auto 30px;
+}
+
+.features__item {
+  text-align: center;
+  padding: 15px 30px;
+  margin-bottom: 20px;
+
+  .number {
+    font-size: 30px;
+    line-height: 50px;
+  }
+}

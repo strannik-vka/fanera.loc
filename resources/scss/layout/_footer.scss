@@ -1,0 +1,55 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the footer of the site/application.
+// -----------------------------------------------------------------------------
+.footer {
+  padding-top: 30px;
+  padding-bottom: 30px;
+
+  @media (min-width: 1024px) {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+}
+
+.footer__col {
+  margin-bottom: 20px;
+}
+
+.footer__col-title {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  text-transform: uppercase;
+
+  @media (min-width: 1024px) {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
+
+.footer p {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: 500;
+}
+
+.footer__phone {
+  display: inline-block;
+  margin-bottom: 15px;
+  color: var(--c-text);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  @media (min-width: 1024px) {
+    margin-bottom: 30px;
+    font-size: 20px;
+    line-height: 24px;
+  }
+}

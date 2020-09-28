@@ -1,0 +1,27 @@
+/* Панель выбора темы */
+.theme_panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  padding: 4px 0;
+  box-shadow: 0 2px 2px -2px rgba(0, 0, 0, .52);
+  text-align: center;
+  line-height: 0;
+}
+
+.theme_color {
+  padding: .8rem;
+  border-radius: 4px;
+  margin: 0 2px;
+  cursor: pointer;
+  display: inline-block;
+  transition-duration: 0.2s;
+  vertical-align: top;
+}
+
+.theme_color:hover,
+.theme_color.active {
+  padding: 1rem;
+}
