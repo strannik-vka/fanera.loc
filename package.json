@@ -24,6 +24,7 @@
     },
     "dependencies": {
         "jquery-modal": "^0.9.2",
-        "locutus": "^2.0.12"
+        "locutus": "^2.0.12",
+        "webpjs": "0.0.2"
     }
 }
