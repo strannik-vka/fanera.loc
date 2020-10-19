@@ -1,5 +1,8 @@
 window.$ = window.jQuery = require('jquery');
 require('jquery-modal');
+require('./libwebp-0.6.0.min');
+require('./demux');
+require('./viewer');
 require('./theme');
 require('./webp');
 

@@ -1,17 +1,14 @@
 window.webp = {
 
     init: function () {
-        if (!webp.support()) {
-            webp.to_canvas();
-            document.addEventListener('DOMSubtreeModified', function () {
-                if (!webp.support()) {
-                    webp.to_canvas();
-                }
-            });
-        }
+        webp.support(function (support) {
+            if (!support) {
+                webp.to_canvas();
+            }
+        });
     },
 
-    dimensions(el) {
+    dimensions: function (el) {
         el = el[0];
         if (el.naturalWidth != undefined) {
             return {
@@ -34,41 +31,86 @@ window.webp = {
         }
     },
 
-    canvas: function (img) {
-        var canvas = document.createElement('canvas'),
-            context = canvas.getContext('2d');
-
-        var dimensions = webp.dimensions(img);
-        canvas.width = dimensions.real_width;
-        canvas.height = dimensions.real_height;
-
-        context.drawImage(img[0], 0, 0);
-
-        img.before(canvas).hide();
-    },
-
     to_canvas: function () {
-        if ($('img[src*=".webp"]:not(webp)').length) {
-            $('img[src*=".webp"]:not(webp)').each(function (event) {
-                $(this).attr('webp', true);
-                webp.canvas($(this));
+        if ($('img[src*=".webp"]:not([webp])').length) {
+            var img = $('img[src*=".webp"]:not([webp]):eq(0)');
+            webp.canvas(img.attr('src'), function (canvas) {
+                img.attr({ webp: true });
+                img.before(canvas).hide();
+                setTimeout(webp.to_canvas, 0);
             });
         }
     },
 
-    support: function () {
+    convertBinaryToArray: function (binary) {
+        var arr = new Array();
+        var num = binary.length;
+        var i;
+        for (i = 0; i < num; ++i)
+            arr.push(binary.charCodeAt(i));
+        return arr;
+    },
+
+    decode: function (response, callback) {
+        response = webp.convertBinaryToArray(response);
+
+        var imagearray = WebPRiffParser(response, 0);
+        imagearray['response'] = response;
+        imagearray['rgbaoutput'] = true;
+        imagearray['dataurl'] = false;
+
+        new WebPImageViewer(new WebPDecoder(), imagearray, function (frame) {
+            var canvas = document.createElement('canvas');
+            var ctx = canvas.getContext('2d');
+            var width = imagearray['header'] ? imagearray['header']['canvas_width'] : frame['imgwidth'];
+            var height = imagearray['header'] ? imagearray['header']['canvas_height'] : frame['imgheight'];
+            canvas.height = height;
+            canvas.width = width;
+            var imagedata = ctx.createImageData(width, height);
+            var rgba = frame['rgbaoutput'];
+            for (var i = 0; i < width * height * 4; i++)
+                imagedata.data[i] = rgba[i];
+            ctx.putImageData(imagedata, 0, 0);
+            callback(canvas);
+        });
+    },
+
+    canvas: function (url, callback) {
+        var http = navigator.appName == "Microsoft Internet Explorer"
+            ? new ActiveXObject("Microsoft.XMLHTTP")
+            : new XMLHttpRequest();
+
+        http.open('get', url);
+
+        if (http.overrideMimeType) {
+            http.overrideMimeType('text/plain; charset=x-user-defined');
+        } else {
+            http.setRequestHeader('Accept-Charset', 'x-user-defined');
+        }
+
+        http.onreadystatechange = function () {
+            if (http.readyState == 4) {
+                var response = http.responseText.split('').map(function (e) {
+                    return String.fromCharCode(e.charCodeAt(0) & 0xff);
+                }).join('');
+                webp.decode(response, callback);
+            }
+        };
+
+        http.send(null);
+    },
+
+    support: function (callback) {
         if (typeof webp.support_status !== 'undefined') {
-            return webp.support_status;
+            callback(webp.support_status);
+        } else {
+            var webP = new Image();
+            webP.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
+            webP.onload = webP.onerror = function () {
+                webp.support_status = webP.height === 2 ? true : false;
+                callback(webp.support_status);
+            }
         }
-
-        var elem = document.createElement('canvas'), result = false;
-        if (!!(elem.getContext && elem.getContext('2d'))) {
-            result = elem.toDataURL('image/webp').indexOf('data:image/webp') == 0;
-        }
-
-        webp.support_status = result;
-
-        return result;
     }
 
 };

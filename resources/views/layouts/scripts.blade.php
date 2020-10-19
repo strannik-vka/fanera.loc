@@ -1,4 +1,4 @@
-<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/app.js') }}?v={{ env('APP_VERSION') }}"></script>
 
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
